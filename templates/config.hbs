@@ -1,0 +1,199 @@
+<div class="ycn-layout">
+  <aside class="ycn-sidebar">
+    <header class="ycn-sidebar-header">
+      <h2><i class="fa-solid fa-list"></i> {{text.rules}}</h2>
+      <button type="button" data-action="add-rule" data-tooltip="{{text.addRule}}">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+    </header>
+
+    <div class="ycn-rule-list">
+      {{#each rules}}
+      <button type="button" class="ycn-rule-card {{cssClass}}" data-action="select-rule" data-rule-id="{{id}}">
+        <span class="ycn-die-badge">{{die}}</span>
+        <span class="ycn-rule-card-text">
+          <strong>{{name}}</strong>
+          <small>{{assignment}}</small>
+        </span>
+        {{#unless enabled}}<i class="fa-solid fa-pause" aria-hidden="true"></i>{{/unless}}
+        {{#if invalid}}<i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>{{/if}}
+      </button>
+      {{/each}}
+    </div>
+
+    <p class="ycn-priority-note"><i class="fa-solid fa-layer-group"></i> {{text.priority}}</p>
+  </aside>
+
+  <main class="ycn-editor">
+    {{#if hasRules}}
+    <header class="ycn-editor-header">
+      <label class="ycn-switch">
+        <input type="checkbox" name="rule-enabled" {{#if current.enabled}}checked{{/if}}>
+        <span></span>
+        <strong>{{text.enabled}}</strong>
+      </label>
+      <div class="ycn-header-actions">
+        <button type="button" data-action="move-up" data-tooltip="{{text.moveUp}}">
+          <i class="fa-solid fa-arrow-up"></i>
+        </button>
+        <button type="button" data-action="move-down" data-tooltip="{{text.moveDown}}">
+          <i class="fa-solid fa-arrow-down"></i>
+        </button>
+        <button type="button" data-action="duplicate-rule" data-tooltip="{{text.duplicate}}">
+          <i class="fa-solid fa-copy"></i>
+        </button>
+        <button type="button" class="danger" data-action="delete-rule" data-tooltip="{{text.delete}}">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="ycn-editor-scroll">
+      <section class="ycn-panel ycn-basics">
+        <div class="form-group stacked {{#if current.nameInvalid}}invalid{{/if}}">
+          <label>{{text.ruleName}}</label>
+          <input type="text" name="rule-name" value="{{current.name}}" autocomplete="off">
+          {{#if current.nameInvalid}}<p class="hint error">{{text.nameError}}</p>{{/if}}
+        </div>
+
+        <div class="ycn-two-columns">
+          <div class="form-group stacked {{#if current.dieInvalid}}invalid{{/if}}">
+            <label>{{text.dieFaces}}</label>
+            <div class="ycn-die-input">
+              <span>d</span>
+              <input type="number" name="faces" min="2" max="1000" step="1" value="{{current.faces}}">
+            </div>
+            <p class="hint">{{text.dieFacesHint}}</p>
+            {{#if current.dieInvalid}}<p class="hint error">{{text.dieError}}</p>{{/if}}
+          </div>
+
+          <div class="form-group stacked {{#if current.rangeInvalid}}invalid{{/if}}">
+            <label>{{text.allowedFaces}}</label>
+            <input type="text" name="allowed" value="{{current.allowed}}" placeholder="1-9, 11-20" autocomplete="off">
+            <p class="hint">{{text.allowedFacesHint}}</p>
+            {{#if current.rangeInvalid}}<p class="hint error">{{current.rangeErrorText}}</p>{{/if}}
+          </div>
+        </div>
+
+        <div class="ycn-preview-wrap">
+          <div>
+            <strong>{{text.preview}}</strong>
+            <small>{{current.allowedCountText}}</small>
+          </div>
+          <div class="ycn-preview {{#if current.rangeInvalid}}invalid{{/if}}" data-preview>
+            {{#each current.previewFaces}}<span>{{this}}</span>{{/each}}
+            {{#if current.previewTruncated}}<span>…</span>{{/if}}
+          </div>
+        </div>
+        <p class="ycn-order-hint"><i class="fa-solid fa-arrow-right-arrow-left"></i> {{text.orderHint}}</p>
+      </section>
+
+      <section class="ycn-panel">
+        <header class="ycn-section-header">
+          <div>
+            <h3><i class="fa-solid fa-right-left"></i> {{text.replacements}}</h3>
+            <p>{{text.replacementsHint}}</p>
+          </div>
+          <button type="button" data-action="add-replacement">
+            <i class="fa-solid fa-plus"></i> {{text.addReplacement}}
+          </button>
+        </header>
+
+        <div class="ycn-replacements {{#if current.replacementInvalid}}invalid{{/if}}">
+          {{#each current.replacements}}
+          <div class="ycn-replacement-row" data-replacement-row>
+            <label>
+              <span>{{../text.from}}</span>
+              <input type="number" name="replacement-from" min="1" max="{{../current.faces}}" step="1" value="{{from}}">
+            </label>
+            <i class="fa-solid fa-arrow-right"></i>
+            <label>
+              <span>{{../text.to}}</span>
+              <input type="number" name="replacement-to" min="1" max="{{../current.faces}}" step="1" value="{{to}}">
+            </label>
+            <button type="button" class="icon danger" data-action="remove-replacement" data-index="{{@index}}" data-tooltip="{{../text.delete}}">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          {{/each}}
+          {{#if current.replacementInvalid}}<p class="hint error">{{current.replacementErrorText}}</p>{{/if}}
+        </div>
+      </section>
+
+      <section class="ycn-panel ycn-assignments">
+        <header class="ycn-section-header">
+          <div>
+            <h3><i class="fa-solid fa-bullseye"></i> {{text.assignments}}</h3>
+            <p>{{text.selectedFirst}}</p>
+          </div>
+          <label class="ycn-global-toggle">
+            <input type="checkbox" name="global" {{#if current.global}}checked{{/if}}>
+            <span><strong>{{text.global}}</strong><small>{{text.globalHint}}</small></span>
+          </label>
+        </header>
+
+        <nav class="ycn-tabs">
+          <button type="button" class="{{#if current.actorsTab}}active{{/if}}" data-action="actors-tab">
+            <i class="fa-solid fa-users"></i> {{text.actors}}
+            <span>{{current.actorCount}}</span>
+          </button>
+          <button type="button" class="{{#if current.itemsTab}}active{{/if}}" data-action="items-tab">
+            <i class="fa-solid fa-suitcase"></i> {{text.items}}
+            <span>{{current.itemCount}}</span>
+          </button>
+        </nav>
+
+        {{#if current.actorsTab}}
+        <div class="ycn-target-pane">
+          <label class="ycn-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" data-filter="actors" placeholder="{{text.actorSearch}}" autocomplete="off">
+          </label>
+          <div class="ycn-target-list" data-target-list="actors">
+            {{#each current.actors}}
+            <button type="button" class="ycn-target-row {{cssClass}}" data-action="toggle-actor" data-key="{{key}}" data-search="{{search}}">
+              <img src="{{img}}" alt="">
+              <span><strong>{{name}}</strong><small>{{sourceLabel}}</small></span>
+              <i class="fa-solid {{#if selected}}fa-circle-check{{else}}fa-circle{{/if}}"></i>
+            </button>
+            {{/each}}
+            <p class="ycn-empty" data-empty {{#if current.hasActors}}hidden{{/if}}>{{text.noActors}}</p>
+          </div>
+        </div>
+        {{/if}}
+
+        {{#if current.itemsTab}}
+        <div class="ycn-target-pane">
+          <label class="ycn-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" data-filter="items" placeholder="{{text.itemSearch}}" autocomplete="off">
+          </label>
+          <div class="ycn-target-list" data-target-list="items">
+            {{#each current.items}}
+            <button type="button" class="ycn-target-row {{cssClass}}" data-action="toggle-item" data-key="{{key}}" data-search="{{search}}">
+              <img src="{{img}}" alt="">
+              <span><strong>{{name}}</strong><small>{{owner}} • {{sourceLabel}}</small></span>
+              <i class="fa-solid {{#if selected}}fa-circle-check{{else}}fa-circle{{/if}}"></i>
+            </button>
+            {{/each}}
+            <p class="ycn-empty" data-empty {{#if current.hasItems}}hidden{{/if}}>{{text.noItems}}</p>
+          </div>
+        </div>
+        {{/if}}
+      </section>
+
+      <footer class="ycn-footer">
+        <button type="button" class="save" data-action="save">
+          <i class="fa-solid fa-floppy-disk"></i> {{text.save}}
+        </button>
+      </footer>
+    </div>
+    {{else}}
+    <div class="ycn-no-rules">
+      <i class="fa-solid fa-dice-d20"></i>
+      <p>{{text.noRules}}</p>
+      <button type="button" data-action="add-rule"><i class="fa-solid fa-plus"></i> {{text.addRule}}</button>
+    </div>
+    {{/if}}
+  </main>
+</div>

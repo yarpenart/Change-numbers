@@ -1,0 +1,11 @@
+{
+  "YCN.Settings.Enabled.Name": "Enable Change Numbers",
+  "YCN.Settings.Enabled.Hint": "Enable or disable every Change Numbers rule without deleting its configuration.",
+  "YCN.Settings.Language.Name": "Interface language",
+  "YCN.Settings.Language.Hint": "Language used by the Change Numbers rule editor and messages.",
+  "YCN.Settings.ShowOriginal.Name": "Show changed results in chat",
+  "YCN.Settings.ShowOriginal.Hint": "Show a small original → final result note below visible rolls.",
+  "YCN.Settings.Menu.Name": "Die result rules",
+  "YCN.Settings.Menu.Label": "Open rule editor",
+  "YCN.Settings.Menu.Hint": "Configure ranges, replacements, characters, and inventory items."
+}

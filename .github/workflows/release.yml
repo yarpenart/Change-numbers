@@ -1,0 +1,45 @@
+name: Release Foundry module
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build release package
+        shell: bash
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          PACKAGE="yarpen-change-numbers-v${VERSION}.zip"
+          STAGING="${RUNNER_TEMP}/yarpen-change-numbers"
+
+          mkdir -p "${STAGING}"
+          rsync -a --exclude='.git' --exclude='.github' --exclude='tests' ./ "${STAGING}/"
+
+          jq \
+            --arg version "${VERSION}" \
+            --arg download "https://github.com/yarpenart/Change-Numbers/releases/download/${GITHUB_REF_NAME}/${PACKAGE}" \
+            '.version = $version | .download = $download' \
+            "${STAGING}/module.json" > "${RUNNER_TEMP}/module.json"
+          mv "${RUNNER_TEMP}/module.json" "${STAGING}/module.json"
+
+          cd "${RUNNER_TEMP}"
+          zip -r "${GITHUB_WORKSPACE}/${PACKAGE}" yarpen-change-numbers
+          cp "${STAGING}/module.json" "${GITHUB_WORKSPACE}/module.json"
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            yarpen-change-numbers-v*.zip
+            module.json

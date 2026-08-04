@@ -1,0 +1,11 @@
+{
+  "YCN.Settings.Enabled.Name": "Włącz Change Numbers",
+  "YCN.Settings.Enabled.Hint": "Włącz lub wyłącz wszystkie reguły Change Numbers bez usuwania konfiguracji.",
+  "YCN.Settings.Language.Name": "Język interfejsu",
+  "YCN.Settings.Language.Hint": "Język edytora reguł i komunikatów Change Numbers.",
+  "YCN.Settings.ShowOriginal.Name": "Pokazuj zmienione wyniki na czacie",
+  "YCN.Settings.ShowOriginal.Hint": "Pod widocznym rzutem pokazuj małą informację pierwotny → końcowy wynik.",
+  "YCN.Settings.Menu.Name": "Reguły wyników kości",
+  "YCN.Settings.Menu.Label": "Otwórz edytor reguł",
+  "YCN.Settings.Menu.Hint": "Skonfiguruj przedziały, podmiany, postacie i przedmioty w ekwipunku."
+}
