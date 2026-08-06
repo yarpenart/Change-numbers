@@ -21,7 +21,7 @@ Hooks.on("dnd5e.postRollConfiguration", (rolls, config) => {
   for (const roll of rolls ?? []) attachContext(roll, context);
 });
 
-Hooks.on("renderChatMessage", (message, html) => {
+Hooks.on("renderChatMessageHTML", (message, html) => {
   renderChangedResults(message, html);
 });
 
