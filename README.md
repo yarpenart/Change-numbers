@@ -1,6 +1,6 @@
 # YarpenArt: Change Numbers
 
-Moduł dla Foundry VTT V13 Build 351 i dnd5e 5.3.3 pozwalający GM-owi zmieniać możliwe wyniki dowolnego rozmiaru kości.
+Moduł dla Foundry VTT V14 Build 365 i dnd5e 5.3.3 pozwalający GM-owi zmieniać możliwe wyniki dowolnego rozmiaru kości.
 
 ## Funkcje
 
@@ -42,16 +42,16 @@ Po opublikowaniu pierwszego wydania w GitHub użyj w Foundry:
 2. W GitHub Desktop wybierz **File → Add local repository** i wskaż folder modułu. Jeżeli folder nie ma jeszcze repozytorium, wybierz utworzenie repozytorium w tym miejscu.
 3. Zatwierdź wszystkie pliki i wybierz **Publish repository**. Nie zaznaczaj opcji prywatnego repozytorium, jeżeli Manifest URL ma działać publicznie.
 4. Otwórz folder przez **Repository → Open in Visual Studio Code**.
-5. W GitHub Desktop utwórz tag `v0.1.0` albo uruchom w terminalu VS Code:
+5. W GitHub Desktop utwórz tag `v0.1.1` albo uruchom w terminalu VS Code:
 
    ```bash
-   git tag v0.1.0
-   git push origin v0.1.0
+   git tag v0.1.1
+   git push origin v0.1.1
    ```
 
-6. GitHub Actions automatycznie utworzy Release zawierający `module.json` i `yarpen-change-numbers-v0.1.0.zip`.
+6. GitHub Actions automatycznie utworzy Release zawierający `module.json` i `yarpen-change-numbers-v0.1.1.zip`.
 
-Przy następnym wydaniu utwórz kolejny tag, np. `v0.1.1`. Workflow wpisze numer wersji i poprawny adres ZIP do manifestu wydania.
+Przy następnym wydaniu utwórz kolejny tag, np. `v0.1.2`. Workflow wpisze numer wersji i poprawny adres ZIP do manifestu wydania.
 
 ## Testy lokalne
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1
+
+- Aktualizacja do Foundry VTT 14 Build 365.
+- Migracja rozszerzenia wiadomości czatu do hooka `renderChatMessageHTML` z V14.
+
 ## 0.1.0
 
 - Pierwsze wydanie dla Foundry VTT 13.351 i dnd5e 5.3.3.
