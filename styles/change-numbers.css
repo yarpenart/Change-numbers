@@ -2,13 +2,47 @@
   --ycn-accent: #7b4fd0;
   --ycn-accent-soft: color-mix(in srgb, var(--ycn-accent) 18%, transparent);
   --ycn-border: color-mix(in srgb, var(--color-border-light-2, #777) 55%, transparent);
-  --ycn-panel: color-mix(in srgb, var(--color-bg-option, #222) 70%, transparent);
+  --ycn-panel: #24202c;
+  --ycn-sidebar-bg: #17141d;
+  --ycn-window-text: #f3eff9;
+  --ycn-window-muted: #c8c0d3;
   min-width: 760px;
+  color: var(--ycn-window-text);
+  color-scheme: dark;
+}
+
+body:has(#interface.theme-light) .yarpen-change-numbers,
+.yarpen-change-numbers.theme-light {
+  --ycn-window-text: #28232e;
+  --ycn-window-muted: #625a6c;
+  --ycn-panel: #f4f0f8;
+  --ycn-sidebar-bg: #e8e2ef;
+  color-scheme: light;
+}
+
+body:has(#interface.theme-dark) .yarpen-change-numbers,
+.yarpen-change-numbers.theme-dark {
+  --ycn-window-text: #f3eff9;
+  --ycn-window-muted: #c8c0d3;
+  --ycn-panel: #24202c;
+  --ycn-sidebar-bg: #17141d;
+  color-scheme: dark;
 }
 
 .yarpen-change-numbers .window-content {
   padding: 0;
   overflow: hidden;
+  color: var(--ycn-window-text);
+}
+
+.yarpen-change-numbers :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea, button) {
+  color: var(--ycn-window-text);
+}
+
+.yarpen-change-numbers :where(input, textarea)::placeholder,
+.yarpen-change-numbers :where(.hint, .notes) {
+  color: var(--ycn-window-muted);
+  opacity: 1;
 }
 
 .ycn-layout {
@@ -29,7 +63,7 @@
   gap: 10px;
   padding: 14px;
   border-right: 1px solid var(--ycn-border);
-  background: color-mix(in srgb, var(--color-bg, #111) 86%, #000);
+  background: var(--ycn-sidebar-bg);
 }
 
 .ycn-sidebar-header,
@@ -123,7 +157,7 @@
 .ycn-section-header p,
 .ycn-preview-wrap small,
 .ycn-global-toggle small {
-  color: var(--color-text-subtle, #aaa);
+  color: var(--ycn-window-muted);
   font-size: 0.78rem;
 }
 
@@ -237,7 +271,7 @@
   margin: 10px 0 0;
   padding-top: 9px;
   border-top: 1px dashed var(--ycn-border);
-  color: var(--color-text-subtle, #aaa);
+  color: var(--ycn-window-muted);
 }
 
 .ycn-section-header {
@@ -400,12 +434,12 @@
 }
 
 .ycn-target-row small {
-  color: var(--color-text-subtle, #aaa);
+  color: var(--ycn-window-muted);
   font-size: 0.74rem;
 }
 
 .ycn-target-row > i {
-  color: var(--color-text-subtle, #888);
+  color: var(--ycn-window-muted);
 }
 
 .ycn-target-row.selected > i {
@@ -416,7 +450,7 @@
   grid-column: 1 / -1;
   margin: 20px;
   text-align: center;
-  color: var(--color-text-subtle, #aaa);
+  color: var(--ycn-window-muted);
 }
 
 .ycn-footer {
