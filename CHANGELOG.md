@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2
+
+- Dodano automatyczny kontrast tekstu, opisów pomocniczych i pól formularza dla jasnego oraz ciemnego motywu Foundry.
+- Jasny motyw otrzymał jasne powierzchnie paneli z ciemnym tekstem, a ciemny motyw ciemne powierzchnie z jasnym tekstem.
+
 ## 0.1.1
 
 - Aktualizacja do Foundry VTT 14 Build 365.
