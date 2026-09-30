@@ -44,14 +44,14 @@ Po opublikowaniu pierwszego wydania w GitHub użyj w Foundry:
 2. W GitHub Desktop wybierz **File → Add local repository** i wskaż folder modułu. Jeżeli folder nie ma jeszcze repozytorium, wybierz utworzenie repozytorium w tym miejscu.
 3. Zatwierdź wszystkie pliki i wybierz **Publish repository**. Nie zaznaczaj opcji prywatnego repozytorium, jeżeli Manifest URL ma działać publicznie.
 4. Otwórz folder przez **Repository → Open in Visual Studio Code**.
-5. W GitHub Desktop utwórz tag `v0.1.2` albo uruchom w terminalu VS Code:
+5. W GitHub Desktop utwórz tag `v0.1.3` albo uruchom w terminalu VS Code:
 
    ```bash
-   git tag v0.1.2
-   git push origin v0.1.2
+   git tag v0.1.3
+   git push origin v0.1.3
    ```
 
-6. GitHub Actions automatycznie utworzy Release zawierający `module.json` i `yarpen-change-numbers-v0.1.2.zip`.
+6. GitHub Actions automatycznie utworzy Release zawierający `module.json` i `yarpen-change-numbers-v0.1.3.zip`.
 
 Przy następnym wydaniu utwórz kolejny tag, np. `v0.1.3`. Workflow wpisze numer wersji i poprawny adres ZIP do manifestu wydania.
 
