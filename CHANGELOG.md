@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3
+
+- Zweryfikowano manifesty, składnię i testy modułu z Foundry VTT 14 Build 365.
+
 ## 0.1.2
 
 - Dodano automatyczny kontrast tekstu, opisów pomocniczych i pól formularza dla jasnego oraz ciemnego motywu Foundry.
