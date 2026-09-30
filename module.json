@@ -2,10 +2,10 @@
   "id": "yarpen-change-numbers",
   "title": "YarpenArt: Change Numbers",
   "description": "GM-configurable allowed die faces and result replacements, assignable globally, to actors, or to individual inventory items.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "url": "https://github.com/yarpenart/Change-Numbers",
   "manifest": "https://github.com/yarpenart/Change-Numbers/releases/latest/download/module.json",
-  "download": "https://github.com/yarpenart/Change-Numbers/releases/download/v0.1.2/yarpen-change-numbers-v0.1.2.zip",
+  "download": "https://github.com/yarpenart/Change-Numbers/releases/download/v0.1.3/yarpen-change-numbers-v0.1.3.zip",
   "authors": [
     {
       "name": "YarpenArt"
